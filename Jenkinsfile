@@ -13,17 +13,14 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                '''
-                sh 'mvn clean package -Dmaven.repo.local=$WORKSPACE/.m2/repository'
-                sh 'mvn test -Dmaven.repo.local=$WORKSPACE/.m2/repository'
-                '''
+            steps {       
+                sh 'mvn clean package -Dmaven.repo.local=$WORKSPACE/.m2/repository'            
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+               sh 'mvn test -Dmaven.repo.local=$WORKSPACE/.m2/repository'
             }
         }
 
